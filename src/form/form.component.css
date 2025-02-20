@@ -1,0 +1,32 @@
+form {
+    min-width: 300px;
+    padding-left: 10vw;
+    padding-right: 10vw;
+}
+
+input:focus, select:focus {
+    border-color: #3b82f6;
+}
+
+.ng-invalid.ng-touched {
+    border-color: #ef4444;
+}
+.custom-scrollbar {
+    scrollbar-width: thin;
+    scrollbar-color: #4a90e2 #e0e0e0;
+  }
+  
+  .custom-scrollbar::-webkit-scrollbar {
+    height: 8px;
+  }
+  
+  .custom-scrollbar::-webkit-scrollbar-track {
+    background: #e0e0e0;
+    border-radius: 4px;
+  }
+  
+  .custom-scrollbar::-webkit-scrollbar-thumb {
+    background-color: #4a90e2;
+    border-radius: 4px;
+  }
+  

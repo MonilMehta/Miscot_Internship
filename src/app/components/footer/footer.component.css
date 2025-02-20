@@ -1,0 +1,33 @@
+.footer {
+  background-color: #fdfdfd; /* slightly off-white for differentiation */
+  color: #000000;
+  box-shadow: 0 -2px 4px rgba(0,0,0,0.1);
+  font-family: 'Inter', sans-serif;
+  font-size: 0.875rem;
+  line-height: 1.25rem;
+}
+
+.footer a {
+  color: #000000;
+  transition: color 0.3s ease;
+}
+
+.footer a:hover {
+  color: #1d4ed8;
+}
+
+.footer hr {
+  border-color: #d1d5db;
+}
+
+.footer .container {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .footer {
+    text-align: center;
+  }
+}

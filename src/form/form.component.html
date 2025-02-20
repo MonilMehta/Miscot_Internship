@@ -1,0 +1,85 @@
+<!-- Improved Sticky Jump Navigation Panel -->
+<div class="sticky top-0 z-10 bg-white shadow p-4 custom-scrollbar">
+  <div class="flex items-center overflow-x-auto">
+    <span class="font-bold mr-4 whitespace-nowrap">Jump to:</span>
+    <ng-container *ngFor="let section of sections">
+      <a href="javascript:void(0)"
+         (click)="navigateTo(section.label)"
+         [ngClass]="{
+           'text-blue-600 border-b-2 border-blue-600': currentSectionId === section.label.reffieldName,
+           'text-gray-600': currentSectionId !== section.label.reffieldName
+         }"
+         class="mr-4 whitespace-nowrap hover:underline pb-1">
+        {{section.label.refName}}
+      </a>
+    </ng-container>
+  </div>
+</div>
+
+<form [formGroup]="form" (ngSubmit)="onSubmit()" class="p-4">
+  <!-- Sections -->
+  <div *ngFor="let section of sections" class="mb-8">
+    <!-- Section Header -->
+    <div [id]="section.label.reffieldName" 
+         class="border-b pb-2 mb-4 flex justify-between items-center cursor-pointer"
+         (click)="toggleSection(section)">
+      <h2 class="text-2xl font-bold">{{section.label.refName}}</h2>
+      <span class="text-gray-500">
+        [{{section.isCollapsed ? 'expand' : 'collapse'}}]
+      </span>
+    </div>
+
+    <!-- Section Fields -->
+    <div [class.hidden]="section.isCollapsed">
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+        <div *ngFor="let field of section.fields" class="mb-4">
+          <label [for]="field.reffieldName" class="block text-gray-700 text-sm font-bold mb-1">
+            {{field.refName}}
+          </label>
+
+          <ng-container [ngSwitch]="field.displayType.toLowerCase()">
+            <!-- Handle combo display type with fieldType check -->
+            <ng-container *ngSwitchCase="'combo'">
+              <!-- Show dropdown only if fieldType is varchar -->
+              <select *ngIf="field.fieldType.toLowerCase() === 'varchar'"
+                      [id]="field.reffieldName"
+                      [formControlName]="field.reffieldName"
+                      class="w-full px-2 py-1 border rounded focus:outline-none focus:ring-2 focus:ring-blue-500">
+                <option value="">Select {{field.refName}}</option>
+                <option *ngFor="let option of dropdownOptions[field.refName] || []" [value]="option">
+                  {{option}}
+                </option>
+              </select>
+              
+              <!-- Show input field for other fieldTypes -->
+              <input *ngIf="field.fieldType.toLowerCase() !== 'varchar'"
+                     [type]="getInputType(field)"
+                     [id]="field.reffieldName"
+                     [formControlName]="field.reffieldName"
+                     class="w-full px-2 py-1 border rounded focus:outline-none focus:ring-2 focus:ring-blue-500">
+            </ng-container>
+          
+            <!-- Default case for other display types -->
+            <input *ngSwitchDefault
+                   [type]="getInputType(field)"
+                   [id]="field.reffieldName"
+                   [formControlName]="field.reffieldName"
+                   class="w-full px-2 py-1 border rounded focus:outline-none focus:ring-2 focus:ring-blue-500">
+          </ng-container>
+
+          <div *ngIf="form.get(field.reffieldName)?.invalid && form.get(field.reffieldName)?.touched"
+               class="text-red-500 text-xs mt-1">
+            {{field.refName}} is required
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Submit Button -->
+  <button type="submit" 
+   
+          class="mt-4 w-full bg-blue-500 text-white py-2 px-4 rounded hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-500">
+    Submit
+  </button>
+</form>

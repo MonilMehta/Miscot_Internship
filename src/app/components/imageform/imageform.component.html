@@ -1,0 +1,59 @@
+<div class="file-upload-container">
+  <!-- Upload Area -->
+  <div 
+    class="upload-area"
+    [class.dragging]="isDragging"
+    (dragover)="onDragOver($event)"
+    (dragleave)="onDragLeave($event)"
+    (drop)="onDrop($event)"
+  >
+    <input
+      #fileInput
+      type="file"
+      class="file-input"
+      accept=".jpeg,.jpg,.pdf"
+      multiple
+      (change)="onFileSelected($event)"
+    />
+    
+    <div class="upload-content">
+      <button class="select-button" (click)="fileInput.click()">
+        Select Files
+      </button>
+      <p class="drag-text">or drag and drop here</p>
+      <p class="format-text">Supported: JPEG, JPG, PDF</p>
+    </div>
+  </div>
+
+  <!-- Error Message -->
+  <div *ngIf="errorMessage" class="error-container">
+    <span>{{ errorMessage }}</span>
+    <button class="error-close" (click)="clearError()">×</button>
+  </div>
+
+  <!-- Preview Grid -->
+  <div class="preview-grid">
+    <div *ngFor="let file of uploadedFiles" class="preview-card">
+      <!-- Image Preview -->
+      <div *ngIf="file.type === 'image'" class="preview-content">
+        <img [src]="file.preview" [alt]="file.file.name" class="preview-image"/>
+      </div>
+      
+      <!-- PDF Preview -->
+      <div *ngIf="file.type === 'pdf'" class="preview-content pdf">
+        <div class="pdf-icon">PDF</div>
+        <p class="file-name">{{file.file.name}}</p>
+      </div>
+
+      <!-- Actions -->
+      <div class="action-buttons">
+        <button class="action-btn preview" (click)="previewFile(file)" title="Preview">
+          <span class="material-icons">visibility</span>
+        </button>
+        <button class="action-btn delete" (click)="deleteFile(file.id)" title="Delete">
+          <span class="material-icons">delete</span>
+        </button>
+      </div>
+    </div>
+  </div>
+</div>

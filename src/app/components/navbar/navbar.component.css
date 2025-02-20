@@ -1,0 +1,15 @@
+.navbar {
+  background-color: #fafafa; /* off white */
+  color: #000000;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+/* Ensure links are black by default and turn blue on hover */
+.navbar a {
+  color: #000000;
+  transition: color 0.3s ease;
+}
+
+.navbar a:hover {
+  color: #1d4ed8;
+}
