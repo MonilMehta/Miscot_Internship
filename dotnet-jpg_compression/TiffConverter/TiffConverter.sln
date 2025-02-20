@@ -1,0 +1,24 @@
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.5.2.0
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TiffConverter", "TiffConverter.csproj", "{4CCFC414-3D95-B967-A4E1-EC89EEED139D}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{4CCFC414-3D95-B967-A4E1-EC89EEED139D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4CCFC414-3D95-B967-A4E1-EC89EEED139D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4CCFC414-3D95-B967-A4E1-EC89EEED139D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4CCFC414-3D95-B967-A4E1-EC89EEED139D}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {D05FC771-B08D-4ABA-BB44-B3CC93A74E4D}
+	EndGlobalSection
+EndGlobal
